@@ -1,0 +1,87 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'user_profile/css/style.css' %}">
+        <title>
+            {% if user.first_name and user.last_name %}
+                {{ user.get_full_name }} || Kartoza Technical Assignment
+                
+            {% elif user.username %}
+                {{ user.username }} || Kartoza Technical Assignment
+
+            {% else %}
+                Kartoza Technical Assignment
+            {% endif %} 
+        </title>
+
+        <style>
+            html, body { 
+                height:100%; 
+                width:100%;
+                overflow-y: hidden; 
+                overflow-x: hidden; 
+            }
+
+            .resume-btn {
+                width: 100%; 
+                box-shadow: 0px 8px 16px #15151541, 0px 2px 4px #15151541;
+            }
+        </style>
+
+        <!-- Extra css block -->
+        {% block extra_css %}{% endblock %}
+    </head>
+    <body>
+        <!-- map -->
+        {% block full_screen_map %}{% endblock %}
+
+        <div class="container my-5" style="max-width: 700px;">
+            <!-- Navbar -->
+            {% include 'user_profile/include/navbar.html' %}
+
+            <!-- Alert Messages-->
+            {% if messages %}
+                <div class="row">
+                    {% for message in messages %}
+                        {% if message.tags == "error" %}
+                            <div class="col-12">
+                                <div class="alert alert-danger" role="alert">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-12">
+                                <div class="alert alert-{{ message.tags }}" role="alert">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>  
+            {% endif %}
+            
+            <!-- Content block -->
+            {% block content %}{% endblock %}
+        </div>
+
+        {# JavaScript #}
+        <!-- Axios -->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+        
+        <!--  Extra JavaScript block -->
+        {% block extra_js %}{% endblock %}
+
+        <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR GOOGLE API KEY GOES HERE&libraries=places&callback=initMap"async></script>
+    </body>
+</html>

@@ -1,0 +1,96 @@
+{% extends 'user_profile/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <!-- User profile picture card col -->
+        <div class="col-4">
+            <div class="card" style="width:100%; height:450px;">
+                <img class="card-img-top" src="{{ user.profile.profile_picture.url }}" height="200px">
+                <div class="card-body text-center">
+                    {% if user.first_name and user.last_name %}
+                        <h2 class="card-title"><b>{{ user.get_full_name }}</b></h2>
+                    {% else %}
+                        <h2 class="card-title"><b>{{ user.username }}</b></h2>
+                    {% endif %}
+                    <h5>
+                        {% if user.profile.profession %}
+                            <span class="text-muted">{{ user.profile.profession }}</span>
+                        {% else %}
+                            <i class="text-muted"><a href="{% url 'edit_user_profile' %}">what is your profession?</a></i>
+                        {% endif %}
+                    </h5>
+                </div>
+                
+                <div class="card-body">
+                    <a href="{% if user.profile.phone_number %} tel:{{ user.profile.phone_number }} {% else %}#{% endif %}">
+                        <button type="button" class="btn btn-dark btn-lg btn-block resume-btn">
+                            <span style="font-weight: 400; padding-left: 5px;">Hire Me</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact details card col -->
+        <div class="col-8">
+            <div class="card" style="width:100%; height:450px;">
+                <!-- Mapbox -->
+                <div class="map" id="map"></div>
+
+                <!-- Contact Details -->
+                <div class="card-body">
+                    <h4 class="card-title">Contact Details</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        {% if user.profile.address %}
+                            <i class="fas fa-map-marker-alt"></i> 
+                            {{ user.profile.address }}
+                        {% else %}
+                            <i class="fas fa-map-marker-alt"></i> 
+                            <i><a href="{% url 'edit_user_profile' %}">what is your address?</a></i>
+                        {% endif %}
+                    </h6>
+                    <small class="text-success"><i>latitude: {{ user.profile.latitude }}, longitude: {{ user.profile.longitude }}</i></small>
+
+                    <!-- row -->
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <span>
+                                {% if user.profile.phone_number %}
+                                    <i class="fas fa-mobile-alt"></i> 
+                                    {{ user.profile.phone_number }}
+                                {% else %}
+                                    <i class="fas fa-mobile-alt text-muted"></i> 
+                                    <i class="text-muted"><a href="{% url 'edit_user_profile' %}">what is your phone number?</a></i>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="col-12 my-1">
+                            <span>
+                                {% if user.email %}
+                                    <i class="fas fa-envelope"></i> 
+                                    {{ user.email }}
+                                {% else %}
+                                    <i class="fas fa-envelope text-muted"></i> 
+                                    <i class="text-muted"><a href="{% url 'edit_user_profile' %}">what is your email address?</a></i>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="col-12 my-1">
+                            {% if user.profile.website_url %}
+                                <span><i class="fas fa-globe"></i> {{ user.profile.website_url }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="lat-lng" lat="{{ user.profile.latitude }}" lng="{{ user.profile.longitude }}"></div>
+{% endblock %}
+
+
+{% block extra_js %}
+    <!-- Custom js -->
+    <script src="{% static 'user_profile/js/user-profile-map.js' %}"></script>
+{% endblock %}

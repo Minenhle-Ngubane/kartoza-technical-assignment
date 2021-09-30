@@ -1,0 +1,35 @@
+{% extends 'user_authentication/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Sign in | Kartoza
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="card px-5 py-5 text-center">
+            <h1>Sign in</h1>
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    <small>Invalid email or password!</small>
+                </div>
+            {% endif %}
+        
+            <div class="form-group my-1">
+                {% render_field form.username class="form-control form-control-sm my-3" placeholder="username" %}
+
+                {% render_field form.password class="form-control form-control-sm my-3" placeholder="password" %}
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm my-1">Sign In</button>
+            <div class="text-center mt-4"> 
+                <span>Not a member?</span> 
+                <a href="{% url 'register' %}" class="text-decoration-none">Sign Up</a> 
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+                    
+                    
+     

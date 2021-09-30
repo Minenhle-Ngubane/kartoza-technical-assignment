@@ -1,0 +1,105 @@
+{% extends 'user_profile/base.html' %}
+{% load widget_tweaks static %}
+
+{% block content %}
+    <div class="row"> 
+        <div class="col-12">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <!-- <h4 class="card-title">Edit Profile  <button class="btn btn-primary btn-sm" type="submit">Save changes</button></h4> -->
+                    <form action="{% url 'edit_user_profile' %}" class="row" method="POST">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="col-3">
+                            <div class="col-12 mb-2">
+                                <img src="{{ user.profile.profile_picture.url }}" id="profile-picture" style="width:100%; height:143px">
+                                <label for="id_profile_picture" class="btn btn-dark btn-sm my-2" style="width: 100%;">upload image</label>
+                                <input type="file" name="profile_picture" accept="image/*" class="form-control form-control-sm" id="id_profile_picture" hidden>
+                            </div>
+                        </div>
+
+                        <div class="col-9">
+                            <div class="row">
+                                <!-- First Name & Last Name-->
+                                <div class="col-4 mb-2">
+                                    <label lass="form-label">First Name</label>
+                                    {% render_field user_update_form.first_name class="form-control form-control-sm" %}
+                                </div>
+                                <!-- Last Name -->
+                                <div class="col-4 mb-2">
+                                    <label lass="form-label">Last Name</label>
+                                    {% render_field user_update_form.last_name class="form-control form-control-sm" %}
+                                </div>
+                                <!-- Profession -->
+                                <div class="col-4 mb-2">
+                                    <label lass="form-label">Profession</label>
+                                    {% render_field user_profile_update_form.profession class="form-control form-control-sm" %}
+                                </div>
+                                <!-- Phone -->
+                                <div class="col-6 mb-2">
+                                    <label lass="form-label">Phone</label>
+                                    {% render_field user_profile_update_form.phone_number class="form-control form-control-sm" %}
+                                </div>
+                                <!-- Email -->
+                                <div class="col-6 mb-2">
+                                    <label lass="form-label">Email</label>
+                                    {% render_field user_update_form.email class="form-control form-control-sm" %}
+                                </div>
+                                <!-- Address -->
+                                <div class="col-12 mb-2">
+                                    <label lass="form-label">Address</label>
+                                    {% render_field user_profile_update_form.address class="form-control form-control-sm" %}
+                                </div>
+                                <!-- Latitude -->
+                                <div class="col-3 mb-2" style="display:none">
+                                    <label lass="form-label">Latitude</label>
+                                    {% render_field user_profile_update_form.latitude class="form-control form-control-sm" %}
+                                </div>
+                                <!-- Longitude -->
+                                <div class="col-3 mb-2" style="display:none">
+                                    <label lass="form-label">Longitude</label>
+                                    {% render_field user_profile_update_form.longitude class="form-control form-control-sm" %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <!-- Mapbox -->
+                            <div class="map" id="map" style="width:100%; height:190px"></div>
+                        </div>
+
+                        <hr>
+                        <!-- buttons -->
+                        <div class="col-6">
+                            <a href="{% url 'user_profile' %}" class="btn btn-secondary btn-sm">Back to profile page</a>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary btn-sm" style="float: right;">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Image upload preview script -->
+    <script>
+        const uploadButton = document.getElementById('id_profile_picture');
+        const imageTag     = document.getElementById('profile-picture');
+
+        uploadButton.addEventListener('change', function() {
+            imageTag.src = URL.createObjectURL(this.files[0])
+        })
+    </script>
+
+    <!-- Custom js -->
+    <script src="{% static 'user_profile/js/auto-complete.js' %}"></script>
+    <script src="{% static 'user_profile/js/user-profile-map.js' %}"></script>
+{% endblock %}
+
+
+        

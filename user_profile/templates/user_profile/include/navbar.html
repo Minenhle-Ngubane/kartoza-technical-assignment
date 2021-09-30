@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2" style="border-radius: 5px;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">KARTOZA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            <div class="d-flex">
+                {% if user.is_authenticated %}
+                    {% if request.path == '/' %}
+                        <a href="{% url 'user_profile' %}" class="btn btn-success btn-sm mx-2">My profile</a>
+                    {% elif request.path == '/user-profile/' %}
+                        <a href="{% url 'edit_user_profile' %}" class="btn btn-success btn-sm mx-2">Edit profile</a>
+                    {% endif %}
+                    <a href="{% url 'logout' %}" class="btn btn-secondary btn-sm">Sign out</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-success btn-sm">Sign in</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>

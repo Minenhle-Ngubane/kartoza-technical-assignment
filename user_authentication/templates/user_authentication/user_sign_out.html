@@ -1,0 +1,17 @@
+{% extends 'user_authentication/base.html' %}
+
+{% block title %}
+    Sign out | Kartoza
+{% endblock %}
+
+{% block content %}
+    <div class="card px-5 py-5 text-center">
+        <div class="alert alert-success" role="alert">
+            Successfully logged out!
+        </div>
+        <div class="text-center mt-4"> 
+            <span>Want to sign in again?</span> 
+            <a href="{% url 'login' %}" class="text-decoration-none">Sign In</a> 
+        </div>
+    </div>
+{% endblock %}

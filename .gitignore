@@ -1,0 +1,18 @@
+*.sqlite3
+*.pyc
+*.db
+*.pid
+*.swp
+*.idea/
+/*.egg/
+.env
+.DS_Store
+/.cache/
+/.pytest_cache/
+/static/
+/media/
+
+db.sqlite3
+
+### vscode
+.vscode
