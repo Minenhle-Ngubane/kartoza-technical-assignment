@@ -5,29 +5,29 @@ The following requirements should be met:
 1. Create a portfolio python app using Django as a framework (https://www.djangoproject.com/),
 
 2. The requirements are :
-    a. Extend the django user model to add further details for user profile, such as home address, phone number, location (point geometry) where they live [+2]
+    - Extend the django user model to add further details for user profile, such as home address, phone number, location (point geometry) where they live 
 
-    b. A user profile page and a page to edit the user’s profile [+3]
+    - A user profile page and a page to edit the user’s profile
 
-    c. A page with full screen map that shows all registered users location [+2]
+    - A page with full screen map that shows all registered users location
 
-    d. When clicking the user icon (just use default icon), it will display the user’s
-    profile in popup. [+1]
+    - When clicking the user icon (just use default icon), it will display the user’s
+    profile in popup. 
 
-    e. Users can log in from the default Django admin page. User can only see
-    their own profile page, but not others [+1]
+    - Users can log in from the default Django admin page. User can only see
+    their own profile page, but not others
 
-    f. User can only access Django admin page for all models by logging in as
-    super user [+1]
+    - User can only access Django admin page for all models by logging in as
+    super user 
 
 3. Bonus requirements :
-    a. Add test cases.
+    - Add test cases.
 
-    b. Enabled CI integration with your code repo such that any new code added via a PR will be automatically tested and display an indicator as to whether the tests have passed or not.
+    - Enabled CI integration with your code repo such that any new code added via a PR will be  automatically tested and display an indicator as to whether the tests have passed or not.
 
-    c. Sign up and sign in page, you can use the existing library to do this (for non super users able to login).
+    - Sign up and sign in page, you can use the existing library to do this (for non super users able to login).
 
-    d. Log the user login/logout activity by showing who and when on the admin page, you can use the existing library to do this.
+    - Log the user login/logout activity by showing who and when on the admin page, you can use the existing library to do this.
 
 ## Quickstart
 
