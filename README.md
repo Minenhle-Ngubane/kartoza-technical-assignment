@@ -29,7 +29,8 @@ The following requirements should be met:
 
     - Log the user login/logout activity by showing who and when on the admin page, you can use the existing library to do this.
 
-## Quickstart
+## Gif Demo
+![](kartoza-assignment-demo.gif)
 
 ### Setting up your Google API Key
 1. Follow the instructions to [get a key](https://developers.google.com/maps/documentation/javascript/get-api-key "get a key")
