@@ -1,4 +1,5 @@
 ## Kartoza Technical Assignment
+![](hero-image.png)
 
 The following requirements should be met:
 
