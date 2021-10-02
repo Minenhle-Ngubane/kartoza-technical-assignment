@@ -29,11 +29,12 @@ def edit_user_profile(request):
 
         if user_update_form.is_valid() and user_profile_update_form.is_valid():
             user_update_form.save()
-            instance = user_profile_update_form.save(commit=False)
+            user_profile = user_profile_update_form.save(commit=False)
 
             address = request.POST['address']
-            status  = extract_lat_lng(address, instance)
+            status  = extract_lat_lng(address, user_profile)
 
+            # Check status returned by the Google Geocoding API and return message to user accordingly
             if status == "OK":
                 messages.success(request, "Your profile has been successfully updated!")
                 return redirect('user_profile')
@@ -84,7 +85,7 @@ def edit_user_profile(request):
 
 
 # extract latitude and longitude from Geocoding API using user's address
-def extract_lat_lng(address, instance):
+def extract_lat_lng(address, user_profile):
     api_key   = settings.API_KEY
     endpoint  = f"https://maps.googleapis.com/maps/api/geocode/json?"
     params    = {
@@ -97,9 +98,10 @@ def extract_lat_lng(address, instance):
 
     if status == "OK":
         geometry           = response["results"][0]["geometry"]
-        instance.latitude  = geometry["location"]["lat"]
-        instance.longitude = geometry["location"]["lng"]
-        instance.save()
+        user_profile.latitude  = geometry["location"]["lat"]
+        user_profile.longitude = geometry["location"]["lng"]
+        user_profile.address_is_valid = True
+        user_profile.save()
         return status
 
     else:

@@ -21,7 +21,7 @@ def user_sign_up(request):
                 login(request, user)
 
             messages.success(request, f"Account created for {username}!")
-            return redirect("edit_user_profile", user_id=user.id)
+            return redirect("edit_user_profile")
     else:
         form = UserCreationForm()
 

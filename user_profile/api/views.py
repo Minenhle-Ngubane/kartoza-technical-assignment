@@ -7,7 +7,8 @@ from user_profile.api.serializers import UserSerializer
 
 @api_view(["GET",])
 def api_users_view(request):
-    queryset = User.objects.all()
+    # Return only users with valid addresses to be listed on full page map
+    queryset = User.objects.filter(profile__address_is_valid=True)
     
     if request.method == "GET":
         serializer = UserSerializer(queryset, many=True)
