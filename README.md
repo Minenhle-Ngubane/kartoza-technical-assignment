@@ -40,6 +40,9 @@ The following requirements should be met:
     - [Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview "Geocoding API")
     - [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview "Maps JavaScript API")
 
+    ![](api-restrictions.png)
+
+
 ### Local Development
 To run this project in your development machine, follow these steps:
 
