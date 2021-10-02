@@ -9,9 +9,12 @@ class UserProfile(models.Model):
     phone_number    = models.CharField(max_length=32, null=True, blank=False)
     website_url     = models.URLField(max_length=255, null=True, blank=True)
     
-    address        = models.CharField(max_length=255, null=True, blank=False)
-    latitude       = models.FloatField(null=True, blank=True)
-    longitude      = models.FloatField(null=True, blank=True)
+    address          = models.CharField(max_length=255, null=True, blank=False)
+    latitude         = models.FloatField(null=True, blank=True)
+    longitude        = models.FloatField(null=True, blank=True)
+
+    # This field will only be True if the address entered by the user is valid
+    address_is_valid = models.BooleanField(default=False) 
 
     class Meta: 
         verbose_name        = "User Profile"
