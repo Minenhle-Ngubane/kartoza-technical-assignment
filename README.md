@@ -29,7 +29,7 @@ The following requirements should be met:
 
     - Log the user login/logout activity by showing who and when on the admin page, you can use the existing library to do this.
 
-## Gif Demo
+### Gif Preview
 ![](kartoza-assignment-demo.gif)
 
 ### Setting up your Google API Key
