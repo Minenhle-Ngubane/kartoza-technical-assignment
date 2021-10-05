@@ -1,36 +1,11 @@
 ## Kartoza Technical Assignment
 ![](hero-image.png)
 
-The following requirements should be met:
+Django web application where a user can create an account and fill in their address details on their profile which the Google Geocoding API will convert into latitude and longitude. All the registered users will be shown by their location on a full page of google maps. 
 
-1. Create a portfolio python app using Django as a framework (https://www.djangoproject.com/),
+When clicking the user icon, it will display the user’s profile in a popup. User can update their profile.
 
-2. The requirements are :
-    - Extend the django user model to add further details for user profile, such as home address, phone number, location (point geometry) where they live 
-
-    - A user profile page and a page to edit the user’s profile
-
-    - A page with full screen map that shows all registered users location
-
-    - When clicking the user icon (just use default icon), it will display the user’s
-    profile in popup. 
-
-    - Users can log in from the default Django admin page. User can only see
-    their own profile page, but not others
-
-    - User can only access Django admin page for all models by logging in as
-    super user 
-
-3. Bonus requirements :
-    - Add test cases.
-
-    - Enabled CI integration with your code repo such that any new code added via a PR will be  automatically tested and display an indicator as to whether the tests have passed or not.
-
-    - Sign up and sign in page, you can use the existing library to do this (for non super users able to login).
-
-    - Log the user login/logout activity by showing who and when on the admin page, you can use the existing library to do this.
-
-### Gif Preview
+### Preview
 ![](kartoza-assignment-demo.gif)
 
 ### Setting up your Google API Key
